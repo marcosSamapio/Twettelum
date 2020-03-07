@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Twittelum</string>
+    <string name="hint_tweet_form">O que você está pensando?</string>
+    <string name="republish_tweet_form">Publicar Tweet</string>
+</resources>
