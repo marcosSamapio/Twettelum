@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.snackbar.SnackbarContentLayout
 import kotlinx.android.synthetic.main.activity_tweet_list.*
 
 class ListaTweetsActivity: AppCompatActivity() {
@@ -14,9 +13,10 @@ class ListaTweetsActivity: AppCompatActivity() {
         setContentView(R.layout.activity_tweet_list)
 
         val tweets = listOf(
-            "Tweet 01",
-            "hahaha",
-            "mo fome"
+            "Primeiro Twett",
+            "Segundo Twett",
+            "Terceiro Twett",
+            "Quarto Twett"
         )
 
         val adapterList = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tweets)
