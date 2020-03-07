@@ -3,8 +3,11 @@ package com.example.twittelum
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.twittelum.db.TweetelumDataBase
+import com.example.twittelum.model.Tweet
 import kotlinx.android.synthetic.main.activity_main.*
 
 class TweetFormActivity : AppCompatActivity() {
@@ -33,6 +36,12 @@ class TweetFormActivity : AppCompatActivity() {
     }
 
     private fun publicaTweet() {
+        val conteudoDoTweet = findViewById<EditText>(R.id.textTweet)
+        val mensagemDoTweet = conteudoDoTweet.text.toString()
+        val tweet = Tweet(mensagemDoTweet)
+        val tweetDao = TweetelumDataBase.getInstance(this).tweetDao()
+        tweetDao.salva(tweet)
+
         val conteudo = textTweet.text.toString()
         Toast.makeText(this, conteudo, Toast.LENGTH_LONG).show()
     }
