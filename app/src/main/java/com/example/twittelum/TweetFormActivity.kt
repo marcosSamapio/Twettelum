@@ -3,14 +3,20 @@ package com.example.twittelum
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import com.example.twittelum.db.TweetelumDataBase
 import com.example.twittelum.model.Tweet
+import com.example.twittelum.viewmodel.TweetViewModel
+import com.example.twittelum.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
 class TweetFormActivity : AppCompatActivity() {
+
+    private val viewModel: TweetViewModel by lazy {
+        ViewModelProviders.of(this, ViewModelFactory).get(TweetViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,13 +42,13 @@ class TweetFormActivity : AppCompatActivity() {
     }
 
     private fun publicaTweet() {
-        val conteudoDoTweet = findViewById<EditText>(R.id.textTweet)
-        val mensagemDoTweet = conteudoDoTweet.text.toString()
-        val tweet = Tweet(mensagemDoTweet)
-        val tweetDao = TweetelumDataBase.getInstance(this).tweetDao()
-        tweetDao.salva(tweet)
-
         val conteudo = textTweet.text.toString()
+        salvaTweet(conteudo)
         Toast.makeText(this, conteudo, Toast.LENGTH_LONG).show()
+    }
+
+    private fun salvaTweet(conteudo: String) {
+        val tweet = Tweet(conteudo)
+        viewModel.salva(tweet)
     }
 }
