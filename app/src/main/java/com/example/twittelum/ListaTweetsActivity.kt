@@ -23,8 +23,6 @@ class ListaTweetsActivity: AppCompatActivity() {
         tweetList.adapter = adapterList
 
         fabNewTweet.setOnClickListener{
-            Snackbar.make(it, "FAB clicado", Snackbar.LENGTH_LONG).show()
-
             val intencao = Intent(this, TweetFormActivity::class.java)
             startActivity(intencao)
         }

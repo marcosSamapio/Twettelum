@@ -23,13 +23,17 @@ class TweetFormActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.tweetPublicar -> {
-                val conteudo = textTweet.text.toString()
-                Toast.makeText(this, conteudo, Toast.LENGTH_LONG).show()
+                publicaTweet()
                 finish()
                 true
             }
             android.R.id.home -> finish()
         }
         return false
+    }
+
+    private fun publicaTweet() {
+        val conteudo = textTweet.text.toString()
+        Toast.makeText(this, conteudo, Toast.LENGTH_LONG).show()
     }
 }
