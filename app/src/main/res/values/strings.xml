@@ -2,4 +2,9 @@
     <string name="app_name">Twittelum</string>
     <string name="hint_tweet_form">O que você está pensando?</string>
     <string name="republish_tweet_form">Publicar Tweet</string>
+    <string name="delete_title_dialog_tweet">Atenção</string>
+    <string name="delete_message_dialog_tweet">Deseja deletar o Tweet?</string>
+    <string name="delete_positive_dialog_tweet">Sim</string>
+    <string name="delete_negative_dialog_tweet">Não</string>
+    <string name="camera">Camera</string>
 </resources>

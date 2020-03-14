@@ -1,11 +1,14 @@
 package com.example.twittelum
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.twittelum.adapter.TweetAdapter
 import com.example.twittelum.model.Tweet
 import com.example.twittelum.viewmodel.TweetViewModel
 import com.example.twittelum.viewmodel.ViewModelFactory
@@ -27,10 +30,29 @@ class ListaTweetsActivity: AppCompatActivity() {
             val intencao = Intent(this, TweetFormActivity::class.java)
             startActivity(intencao)
         }
+
+        tweetList.setOnItemClickListener { _, _, position, _ ->
+            val tweet = tweetList.getItemAtPosition(position) as Tweet
+            perguntaSeQuerDeletar(tweet)
+        }
     }
 
-    private fun obeserver()= Observer<List<Tweet>> {
-        tweetList.adapter = ArrayAdapter<Tweet>(this, android.R.layout.simple_list_item_1, it)
+    private fun perguntaSeQuerDeletar(tweet: Tweet) {
+        AlertDialog.Builder(this)
+            .setIcon(R.drawable.ic_warning)
+            .setTitle(R.string.delete_title_dialog_tweet)
+            .setMessage(R.string.delete_message_dialog_tweet)
+            .setPositiveButton(R.string.delete_positive_dialog_tweet) { _: DialogInterface, _: Int -> viewModel.deleta(tweet)}
+            .setNegativeButton(R.string.delete_negative_dialog_tweet, null)
+            .show()
+    }
+
+    private fun obeserver(): Observer<List<Tweet>> {
+        return Observer { tweets ->
+            tweets?.let {
+                tweetList.adapter = TweetAdapter(tweets)
+            }
+        }
     }
 
 }

@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/tweetMenuCamera"
+        android:icon="@drawable/ic_camera"
+        android:title="@string/camera"
+        app:showAsAction="ifRoom"/>
+    <item
         android:id="@+id/tweetPublicar"
         android:title="@string/republish_tweet_form"
         android:icon="@drawable/ic_save_black_24dp"
